@@ -7,12 +7,14 @@ namespace Nullable_example
         
         static void Main(string[] args)
         {
-            int? a = null;
-             // Console.WriteLine(a.Value); // 값이 없어서 오류
-            Console.WriteLine(a.HasValue);
-            a = 33;
-            Console.WriteLine(a != null);
-            Console.WriteLine(a.HasValue);
+            var a = 15;
+            var b = "I love you";
+            var c = 3.14;
+            var arr = new int[] { 10, 20, 30 }; // new는 동적할당 
+            Console.WriteLine("type : {0}, value : {1}", a.GetType(), a);
+            Console.WriteLine("type : {0}, value : {1}", b.GetType(), b);
+            foreach (var i in arr)
+                Console.WriteLine("{0}", i);
         }
     }
 }
