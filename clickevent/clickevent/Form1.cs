@@ -16,17 +16,18 @@ namespace clickevent
         public Form1()
         {
             InitializeComponent();
-            
+            pictureBox1.Visible = false;
             PictureArray(10);
-            timer1.Start(); // 타이머 시작 명령
+           // timer1.Start(); // 타이머 시작 명령
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             pictureBox1.Left = e.X;
             pictureBox1.Top = e.Y;
-        
             
+
+
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -42,20 +43,14 @@ namespace clickevent
         private void Form1_KeyDown(object sender, KeyEventArgs e)
 
         {
-            if (e.KeyCode == Keys.Left)
-                pictureBox1.Left -= 10; //왼쪽으로 이동
-            if (e.KeyCode == Keys.Right)
-                pictureBox1.Left += 10; //오른쪽으로 이동
-            if (e.KeyCode == Keys.Down)
-                pictureBox1.Top += 10; //위로 이동
-            if (e.KeyCode == Keys.Up)
-                pictureBox1.Top -= 10; //아래로 이동
+           
            
           
         }
         private void pictureBox2_Click(object sender, System.EventArgs e)
         {
-            pictureBox2[index].Visible = true;
+            PictureBox temp = (PictureBox)sender;
+            temp.Visible = false; //숨기기 
                 
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -77,6 +72,11 @@ namespace clickevent
                 
 
             }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }

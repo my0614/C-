@@ -43,6 +43,7 @@ namespace clickevent
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // timer1
             // 
@@ -82,6 +83,7 @@ namespace clickevent
                 this.pictureBox2[index].TabIndex = 1;
                 this.pictureBox2[index].TabStop = false;
                 this.Controls.Add(this.pictureBox2[index]);
+                this.pictureBox2[index].Click += new System.EventHandler(this.pictureBox2_Click);
                 ((System.ComponentModel.ISupportInitialize)(this.pictureBox2[index])).EndInit();
             }
             
