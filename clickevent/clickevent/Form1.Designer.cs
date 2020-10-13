@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace clickevent
 {
     partial class Form1
@@ -32,6 +34,7 @@ namespace clickevent
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,13 +45,17 @@ namespace clickevent
             // pictureBox1
             // 
             this.pictureBox1.Image = global::clickevent.Properties.Resources.거품;
-            this.pictureBox1.Location = new System.Drawing.Point(389, 179);
+            this.pictureBox1.Location = new System.Drawing.Point(400, 370);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(167, 78);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -72,12 +79,12 @@ namespace clickevent
         void PictureArray(int count)
         {
             this.pictureBox2 = new System.Windows.Forms.PictureBox[count];
-            for(int index=0;index < pictureBox2.Length; index++)
+            for (int index = 0; index < pictureBox2.Length; index++)
             {
                 this.pictureBox2[index] = new System.Windows.Forms.PictureBox();
                 ((System.ComponentModel.ISupportInitialize)(this.pictureBox2[index])).BeginInit();
                 this.pictureBox2[index].Image = global::clickevent.Properties.Resources.세균;
-                this.pictureBox2[index].Location = new System.Drawing.Point(12 , 12);
+                this.pictureBox2[index].Location = new System.Drawing.Point(12, 12);
                 this.pictureBox2[index].Name = "pictureBox2";
                 this.pictureBox2[index].Size = new System.Drawing.Size(100, 50);
                 this.pictureBox2[index].SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -87,12 +94,33 @@ namespace clickevent
                 this.pictureBox2[index].Click += new System.EventHandler(this.pictureBox2_Click);
                 ((System.ComponentModel.ISupportInitialize)(this.pictureBox2[index])).EndInit();
             }
-            
+
         }
 
+        PictureBox Makebullet(int x, int y)
+        {
+
+
+                System.Windows.Forms.PictureBox pictureBox3 = new System.Windows.Forms.PictureBox();
+
+            ((System.ComponentModel.ISupportInitialize)(pictureBox3)).BeginInit();
+            pictureBox3.Image = global::clickevent.Properties.Resources.물방울;
+                pictureBox3.Location = new System.Drawing.Point(x,y);
+                pictureBox3.Name = "pictureBox3";
+                pictureBox3.Size = new System.Drawing.Size(49, 49);
+                pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                pictureBox3.TabIndex = 1;
+                pictureBox3.TabStop = false;
+                
+                Controls.Add(pictureBox3);
+            ((System.ComponentModel.ISupportInitialize)(pictureBox3)).EndInit();
+            return pictureBox3;
+
+        } 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox[] pictureBox2;
         private System.Windows.Forms.Timer timer1;
+        private Timer timer2;
     }
 }
 
