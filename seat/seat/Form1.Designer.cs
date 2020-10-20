@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace seat
 {
     
@@ -70,6 +72,13 @@ namespace seat
         // panel배열 만들기
         private void PanelArray(int value)
         {
+            if(num_panel != null)
+            {
+                for(int i=0;i<num_panel.Length;i++)
+                {
+                    num_panel[i].Visible = false;
+                }
+            }
             num_panel = new System.Windows.Forms.Panel[value];
             numlabel = new System.Windows.Forms.Label[value];
 
