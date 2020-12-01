@@ -20,14 +20,14 @@ namespace trans
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Translate(string query)
         {
             string url = "https://openapi.naver.com/v1/papago/n2mt";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Headers.Add("X-Naver-Client-Id", "E2oUjPy85SLNpwlAL6fG");
             request.Headers.Add("X-Naver-Client-Secret", "vIi4GAlVms");
             request.Method = "POST";
-            string query = textBox1.Text;
+
             byte[] byteDataParams = Encoding.UTF8.GetBytes("source=ko&target=en&text=" + query);
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = byteDataParams.Length;
@@ -41,7 +41,19 @@ namespace trans
             stream.Close();
             response.Close();
             reader.Close();
-            textBox2.Text = text.Split(',')[5].Split(':')[1];
+            textBox2.Text += (text.Split(',')[5].Split(':')[1] + "\r\n");
+
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            textBox2.Text = "";
+            string[] InputStirng = textBox1.Text.Split('\n');
+            for(int i=0; i<InputStirng.Length;i++)
+            {
+                Translate(InputStirng[i]);
+            }
+        }
+        
     }
 }
