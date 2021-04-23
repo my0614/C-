@@ -1,19 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Interface
 {
     interface ILogger
     {
-        void WriteLog(string message);
+        void WriteLog(string form, int n, char from, char to); // 인자 값 3개
     }
     class ConsoleLogger : ILogger
     {
-        public void WriteLog(string message)
+        public void WriteLog(string form,int n, char from, char to)
         {
-            Console.WriteLine(
-                "{0} {1}", DateTime.Now.ToLocalTime(), message);
+            Console.WriteLine( "{0}\t{1}\t{2}\t", n,from, to);
         }
     }
 
@@ -25,9 +25,9 @@ namespace Interface
             writer = File.CreateText(path);
             writer.AutoFlush = true;
         }
-        public void WriteLog(string message)
+        public void WriteLog(string form,int n, char from, char to)
         {
-            writer.WriteLine("{0} {1}", DateTime.Now.ToShortDateString(), message);
+            writer.WriteLine("{0}\t{1}\t{2}\t",n,from, to);
         }
 
     }
@@ -38,24 +38,30 @@ namespace Interface
         {
             this.logger = logger;
         }
-        public void start()
+        public void hanoi_tower(int n, char from, char tmp, char to)
         {
-            while (true)
+            
+            if (n == 1)
             {
-                Console.Write("온도를 입력하시오 : ");
-                string temperature = Console.ReadLine();
-                if (temperature == "")
-                    break;
-                logger.WriteLog("현재 온도 :" + temperature);
+                Console.WriteLine("{0}\t{1}\t{2}", n,from, to);
+                logger.WriteLog("{0}\t{1}\t{2}",n, from, to);
+            }
+            else
+            {
+                hanoi_tower(n - 1, from, to, tmp);
+                Console.WriteLine("{0}\t{1}\t{2}", n, from, to);
+                hanoi_tower(n - 1, tmp, from, to);
+                logger.WriteLog("{0}\t{1}\t{2}",n, from, to);
             }
         }
+
     }
     class Program
     {
         static void Main(string[] args)
         {
-            ClimateMonitor moniter = new ClimateMonitor(new FileLogger("MyLog.txt"));
-            moniter.start();
+            ClimateMonitor moniter = new ClimateMonitor(new FileLogger("Hanoi.txt"));
+            moniter.hanoi_tower(3,'A','C','B');
         }
 
     }
