@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
 
@@ -61,7 +62,13 @@ namespace Interface
         static void Main(string[] args)
         {
             ClimateMonitor moniter = new ClimateMonitor(new FileLogger("Hanoi.txt"));
-            moniter.hanoi_tower(3,'A','C','B');
+            int i;
+            for (i = 1; i < 13; i++)
+            {
+                Console.WriteLine("{0}번",i);
+                moniter.hanoi_tower(i, 'A', 'C', 'B');
+            }
+          
         }
 
     }
