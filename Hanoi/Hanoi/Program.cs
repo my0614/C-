@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Reflection.Metadata.Ecma335;
 
 namespace Hanoi
 {
@@ -11,42 +11,41 @@ namespace Hanoi
         {
             using (var sr = new System.IO.StreamReader(fileName))
             {
-                for (int i = 1; i < line; i++)
+                for (int i = 1; i <= line; i++)
                     sr.ReadLine();
                 return sr.ReadLine();
             }
         }
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             int counter = 0;
-       
-            string num = Console.ReadLine();
-            int result = 1;
-            
-           /*
+
+
             System.IO.StreamReader file =
                 new System.IO.StreamReader(@"C:\Users\MY\workspace\C-sharp\interface\interface\bin\Debug\netcoreapp3.1\Hanoi.txt");
-           */
+            Console.WriteLine("하노이탑의 개수를 적으시오(1~12까지)");
+            string num = Console.ReadLine();
+            int num2 = int.Parse(num);
+           
+            int result = 1;
 
-            //file.Close();
-            double start, end;
-            double line;
-            start = Math.Pow(2, int.Parse(num)-int.Parse(num));
-            end = Math.Pow(2, int.Parse(num)) - 1;
-            Console.WriteLine(start);
-            Console.WriteLine(end);
-            for(double i=start;i<=end;i++)
-            {
-                //Console.WriteLine(i);
-                 string txt = MainApp.GetLine(@"C:\Users\MY\workspace\C-sharp\interface\interface\bin\Debug\netcoreapp3.1\Hanoi.txt", i);
-                Console.WriteLine(txt);
-                
-                
-            }
-                
-             
-                
+                //file.Close();
+                double start, end;
+                double line;
+
+                start = Math.Pow(2, num2 ) - 1 - num2;
+                end = Math.Pow(2,num2+1)-1-num2-1;
+                for (double i = start; i <= end - 1; i++)
+                {
+                    //Console.WriteLine(i);
+                    string txt = MainApp.GetLine(@"C:\Users\MY\workspace\C-sharp\interface\interface\bin\Debug\netcoreapp3.1\Hanoi.txt", i);
+                    Console.WriteLine(txt);
+
+                }
+
+            return 0;    
         }
+       
     }
 }
